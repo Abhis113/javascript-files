@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            grid-template-rows:repeat(4,auto);
+            gap:20px;
+        }
+        p+img{
+            height:50px;
+            padding-left:70px;
+            margin-top:-10px
+        }
+        #container>div{
+            border:1px solid green;
+
+        }
+        div>img+h3{
+            text-align:center;
+            font-size:25px;
+            margin-top:-5px;
+            color:brown
+        }
+        h3+p{
+            text-align:center;
+            font-size:20px;
+            margin-top:-15px;
+            color:blue;
+        }
+        
+
+        </style>
+</head>
+<h1>
+    <h1>Frontend</h1>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    var investorArr=JSON.parse(localStorage.getItem("investorsData"));
+   // console.log(investorArr);
+    investorArr.forEach(function (element) {
+
+        var box=document.createElement("div");
+       var investor_avatar=document.createElement("img");
+       investor_avatar.setAttribute("src",element.investorIMG);
+        var investor_name=document.createElement("h3");
+        investor_name.innerText=element.investorName;
+        var investor_role=document.createElement("p");
+        investor_role.innerText=element.investorRole ;
+       var investor_logo=document.createElement("img");
+        investor_logo.setAttribute("src",element.investorCompanyLogo);
+       box.append(investor_avatar, investor_name,investor_role,investor_logo);
+        document.querySelector("#container").append(box);
+
+
+});
+</script>
